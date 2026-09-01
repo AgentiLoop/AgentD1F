@@ -23,7 +23,7 @@ Experience the power of MultiLineDiff algorithms in real-time with our interacti
 **License**: MIT  
 **Language**: Swift 100%  
 **Latest Release**: v2.0.2 (May 27, 2025)  
-**Creator**: AgentiLoop Agent © xcf.ai
+**Creator**: AgentiLoop © xcf.ai
 
 ---
 
