@@ -2,6 +2,7 @@
 // https://docs.swift.org/swift-book
 
 import Foundation
+import AgentAudit
 import CommonCrypto
 
 #if canImport(CryptoKit)
@@ -431,6 +432,18 @@ import CryptoKit
     
     // MARK: - ASCII Diff Parsing Methods
     
+    /// Map a line's first character to its canonical ASCII prefix. Emoji markers
+    /// (`DiffSymbols`) are what the display side emits; `=`/`-`/`+` is the wire form.
+    @inline(__always)
+    static func normalizedPrefix(_ c: Character) -> Character {
+        switch String(c) {
+        case DiffSymbols.retain: return "="
+        case DiffSymbols.delete: return "-"
+        case DiffSymbols.insert: return "+"
+        default: return c
+        }
+    }
+
     /// Parses ASCII diff text back into a DiffResult
     /// 
     /// This method allows AI models and users to submit diffs in a readable ASCII format
@@ -512,7 +525,9 @@ import CryptoKit
             let content = String(line.dropFirst(1))
             let lineOp: String
 
-            switch first {
+            // Accept both the plain ASCII prefixes and the emoji markers that
+            // `generateASCIIDiff`/`displayDiff` emit, so display output round-trips.
+            switch Self.normalizedPrefix(first) {
             case "=": lineOp = "retain"
             case "-": lineOp = "delete"
             case "+": lineOp = "insert"
@@ -579,7 +594,7 @@ import CryptoKit
             let first = line.first!
             let content = String(line.dropFirst(1))
 
-            switch first {
+            switch Self.normalizedPrefix(first) {
             case "=":
                 sourceLines.append(content)
                 modifiedLines.append(content)
@@ -689,49 +704,48 @@ import CryptoKit
         destination: String,
         algorithm: DiffAlgorithm = .megatron
     ) throws -> ASCIIWorkflowDemo {
-        print("🚀 ASCII Diff Workflow Demonstration")
-        print(String(repeating: "=", count: 50))
+        AuditLog.log(.tool, "ASCII diff workflow demonstration")
         
         // Step 1: Create original diff
-        print("📝 Step 1: Creating diff...")
+        AuditLog.log(.tool, "📝 Step 1: Creating diff...")
         let originalDiff = createDiff(
             source: source,
             destination: destination,
             algorithm: algorithm,
             includeMetadata: false
         )
-        print("   ✅ Created \(originalDiff.operations.count) operations")
+        AuditLog.log(.tool, "   ✅ Created \(originalDiff.operations.count) operations")
         
         // Step 2: Display as ASCII
-        print("📄 Step 2: Converting to ASCII format...")
+        AuditLog.log(.tool, "📄 Step 2: Converting to ASCII format...")
         let asciiDiff = displayDiff(
             diff: originalDiff,
             source: source,
             format: .ai
         )
-        print("   ✅ Generated ASCII diff (\(asciiDiff.count) characters)")
+        AuditLog.log(.tool, "   ✅ Generated ASCII diff (\(asciiDiff.count) characters)")
         
         // Step 3: Parse ASCII back to diff
-        print("🔍 Step 3: Parsing ASCII diff...")
+        AuditLog.log(.tool, "🔍 Step 3: Parsing ASCII diff...")
         let parsedDiff = try parseDiffFromASCII(asciiDiff)
-        print("   ✅ Parsed \(parsedDiff.operations.count) operations")
+        AuditLog.log(.tool, "   ✅ Parsed \(parsedDiff.operations.count) operations")
         
         // Step 4: Apply parsed diff
-        print("⚡ Step 4: Applying parsed diff...")
+        AuditLog.log(.tool, "⚡ Step 4: Applying parsed diff...")
         let result = try applyDiff(to: source, diff: parsedDiff)
-        print("   ✅ Applied diff successfully")
+        AuditLog.log(.tool, "   ✅ Applied diff successfully")
         
         // Step 5: Verify result
-        print("🎯 Step 5: Verifying result...")
+        AuditLog.log(.tool, "🎯 Step 5: Verifying result...")
         let success = result == destination
-        print("   \(success ? "✅" : "❌") Result matches destination: \(success)")
+        AuditLog.log(.tool, "   \(success ? "✅" : "❌") Result matches destination: \(success)")
         
         if success {
-            print("🎉 ASCII diff workflow completed successfully!")
+            AuditLog.log(.tool, "🎉 ASCII diff workflow completed successfully!")
         } else {
-            print("❌ Workflow failed - result doesn't match destination")
-            print("Expected: '\(destination)'")
-            print("Got: '\(result)'")
+            AuditLog.log(.tool, "❌ Workflow failed - result doesn't match destination")
+            AuditLog.log(.tool, "Expected: '\(destination)'")
+            AuditLog.log(.tool, "Got: '\(result)'")
         }
         
         return ASCIIWorkflowDemo(
@@ -949,7 +963,7 @@ import CryptoKit
         // Validate this is an AI-generated diff
         if let metadata = aiDiffResult.metadata,
            metadata.algorithmUsed != .aigenerated {
-            print("⚠️ Warning: Diff was not marked as AI-generated")
+            AuditLog.log(.tool, "⚠️ Warning: Diff was not marked as AI-generated")
         }
         
         // Apply the diff
@@ -957,12 +971,12 @@ import CryptoKit
         
         // Log successful application if metadata is available
         if let diffMetadata = aiDiffResult.metadata {
-            print("✅ AI diff applied successfully")
+            AuditLog.log(.tool, "✅ AI diff applied successfully")
             if let startLine = diffMetadata.sourceStartLine {
-                print("📍 Applied at line: \(startLine)")
+                AuditLog.log(.tool, "📍 Applied at line: \(startLine)")
             }
             if let totalLines = diffMetadata.sourceTotalLines {
-                print("📊 Affected \(totalLines) lines")
+                AuditLog.log(.tool, "📊 Affected \(totalLines) lines")
             }
         }
         

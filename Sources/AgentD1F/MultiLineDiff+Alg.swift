@@ -382,6 +382,18 @@ extension MultiLineDiff {
     }
     
     /// Generate a fallback hash based on diff operations for extreme edge cases
+    /// Deterministic 64-bit FNV-1a over UTF-8. `String.hashValue` is seeded per
+    /// process, so it must not feed a hash that is persisted or compared across runs.
+    @inline(__always)
+    internal static func stableHash(_ text: String) -> UInt64 {
+        var h: UInt64 = 0xcbf29ce484222325
+        for b in text.utf8 {
+            h ^= UInt64(b)
+            h &*= 0x100000001b3
+        }
+        return h
+    }
+
     @_optimize(speed)
     internal static func generateFallbackHash(for diff: DiffResult) -> String {
         var hashComponents: [String] = []
@@ -392,7 +404,7 @@ extension MultiLineDiff {
             case .retain(let count):
                 hashComponents.append("r\(count)")
             case .insert(let text):
-                hashComponents.append("i\(text.count):\(text.hashValue)")
+                hashComponents.append("i\(text.count):\(Self.stableHash(text))")
             case .delete(let count):
                 hashComponents.append("d\(count)")
             }
