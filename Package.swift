@@ -16,7 +16,7 @@ let package = Package(
             targets: ["AgentD1FRunner"])
     ],
     dependencies: [
-        .package(url: "https://github.com/AgentiLoop/AgentAudit.git", from: "1.3.4"),
+        .package(url: "https://github.com/AgentiLoop/AgentAudit.git", from: "1.3.5"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
