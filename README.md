@@ -22,7 +22,7 @@ Experience the power of MultiLineDiff algorithms in real-time with our interacti
 **Website**: [d1f.ai](https://d1f.ai) - Interactive Demo & Documentation  
 **License**: MIT  
 **Language**: Swift 100%  
-**Latest Release**: v1.0.11  
+**Latest Release**: v1.0.12  
 **Creator**: AgentiLoop © xcf.ai
 
 ---

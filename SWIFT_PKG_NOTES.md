@@ -5,7 +5,7 @@
 **Repository**: [AgentiLoop/AgentD1F](https://github.com/AgentiLoop/AgentD1F.git)  
 **License**: MIT  
 **Language**: Swift 100%  
-**Latest Release**: v1.0.11  
+**Latest Release**: v1.0.12  
 **Creator**: AgentiLoop.ai © Logos InkPen LLC
 
 ---
