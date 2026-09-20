@@ -2,11 +2,11 @@
 
 ## 📦 Package Information
 
-**Repository**: [CodeFreezeAI/swift-multi-line-diff](https://github.com/CodeFreezeAI/swift-multi-line-diff.git)  
+**Repository**: [AgentiLoop/AgentD1F](https://github.com/AgentiLoop/AgentD1F.git)  
 **License**: MIT  
 **Language**: Swift 100%  
-**Latest Release**: v1.3.3 (May 25, 2025)  
-**Creator**: Heisenburg © xcf.ai
+**Latest Release**: v1.0.11  
+**Creator**: AgentiLoop.ai © Logos InkPen LLC
 
 ---
 
@@ -19,38 +19,35 @@
 2. Go to **File** → **Add Package Dependencies**
 3. Enter the repository URL:
    ```
-   https://github.com/CodeFreezeAI/swift-multi-line-diff.git
+   https://github.com/AgentiLoop/AgentD1F.git
    ```
-4. Select version `1.3.3` or **Up to Next Major Version**
+4. Select version `1.0.11` or **Up to Next Major Version**
 5. Click **Add Package**
-6. Select **MultiLineDiff** target and click **Add Package**
+6. Select **AgentD1F** target and click **Add Package**
 
 #### Via Package.swift
 Add the dependency to your `Package.swift` file:
 
 ```swift
-// swift-tools-version: 5.9
+// swift-tools-version: 6.2
 import PackageDescription
 
 let package = Package(
     name: "YourProject",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v13_0),
-        .watchOS(.v6_0),
-        .tvOS(.v13_0)
+        .macOS(.v26)
     ],
     dependencies: [
         .package(
-            url: "https://github.com/CodeFreezeAI/swift-multi-line-diff.git",
-            from: "1.3.3"
+            url: "https://github.com/AgentiLoop/AgentD1F.git",
+            from: "1.0.11"
         )
     ],
     targets: [
         .target(
             name: "YourTarget",
             dependencies: [
-                .product(name: "MultiLineDiff", package: "swift-multi-line-diff")
+                .product(name: "AgentD1F", package: "AgentD1F")
             ]
         )
     ]
@@ -68,8 +65,8 @@ swift build
 #### Clone and Build Locally
 ```bash
 # Clone the repository
-git clone https://github.com/CodeFreezeAI/swift-multi-line-diff.git
-cd swift-multi-line-diff
+git clone https://github.com/AgentiLoop/AgentD1F.git
+cd AgentD1F
 
 # Build the package
 swift build
@@ -84,7 +81,7 @@ swift build -c release
 #### Integration into Local Project
 ```bash
 # Add as a local dependency in your Package.swift
-.package(path: "../path/to/swift-multi-line-diff")
+.package(path: "../path/to/AgentD1F")
 ```
 
 ---
@@ -93,11 +90,7 @@ swift build -c release
 
 | Platform | Minimum Version |
 |----------|----------------|
-| **macOS** | 10.15+ |
-| **iOS** | 13.0+ |
-| **watchOS** | 6.0+ |
-| **tvOS** | 13.0+ |
-| **Linux** | Swift 5.9+ |
+| **macOS** | 26+ (Swift 6.2+) |
 
 ---
 
@@ -389,7 +382,7 @@ import MultiLineDiff
 ```swift
 // ❌ Error: Platform version too low
 // ✅ Solution: Update minimum deployment target
-// iOS 13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+
+// macOS 26+ (Swift 6.2+)
 ```
 
 #### 3. Memory Issues with Large Files
@@ -508,4 +501,4 @@ print("Diff creation took: \((endTime - startTime) * 1000)ms")
 
 **Ready to revolutionize your diffing workflow with the world's most advanced diffing system!**
 
-*Created by Heisenburg © 2025 xcf.ai* 
+*Created by AgentiLoop.ai © 2025 Logos InkPen LLC* 

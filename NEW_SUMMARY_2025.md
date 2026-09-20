@@ -1,7 +1,7 @@
 # MultiLineDiff: The World's Most Advanced Diffing System
 ## Revolutionary Features & Capabilities Summary 2025
 
-*All inventions and innovations by Heisenburg © xcf.ai*
+*All inventions and innovations by AgentiLoop.ai © Logos InkPen LLC*
 
 ---
 
@@ -201,7 +201,7 @@ let undoDiff = MultiLineDiff.createUndoDiff(from: diff)
 - **2x faster** than traditional algorithms
 - **Minimal memory** allocation
 - **O(n) complexity** for most operations
-- **Swift 6.1 optimizations** throughout
+- **Swift 6.2 optimizations** throughout
 
 ---
 
@@ -367,6 +367,6 @@ This is the **first and only** diffing system that:
 
 ---
 
-*© 2025 Heisenburg, xcf.ai - All innovations and inventions proprietary*
+*© 2025 AgentiLoop.ai, a Logos InkPen LLC company - All innovations and inventions proprietary*
 
 **MultiLineDiff: The Most Advanced Diffing System on Earth** 🌍 
