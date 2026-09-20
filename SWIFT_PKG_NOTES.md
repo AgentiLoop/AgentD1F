@@ -21,7 +21,7 @@
    ```
    https://github.com/AgentiLoop/AgentD1F.git
    ```
-4. Select version `1.0.11` or **Up to Next Major Version**
+4. Select version `1.0.12` or **Up to Next Major Version**
 5. Click **Add Package**
 6. Select **AgentD1F** target and click **Add Package**
 
@@ -40,7 +40,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/AgentiLoop/AgentD1F.git",
-            from: "1.0.11"
+            from: "1.0.12"
         )
     ],
     targets: [
