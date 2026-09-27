@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "AgentD1F",
-    platforms: [.macOS(.v26)],
+    platforms: [.macOS(.v14)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -16,7 +16,7 @@ let package = Package(
             targets: ["AgentD1FRunner"])
     ],
     dependencies: [
-        .package(url: "https://github.com/AgentiLoop/AgentAudit.git", from: "1.3.5"),
+        .package(url: "https://github.com/AgentiLoop/AgentAudit.git", from: "1.3.9"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
