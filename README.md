@@ -22,7 +22,7 @@ Experience the power of MultiLineDiff algorithms in real-time with our interacti
 **Website**: [d1f.ai](https://d1f.ai) - Interactive Demo & Documentation  
 **License**: MIT  
 **Language**: Swift 100%  
-**Latest Release**: v1.0.12  
+**Latest Release**: v1.0.15  
 **Creator**: AgentiLoop © xcf.ai
 
 ---
@@ -52,12 +52,12 @@ import PackageDescription
 let package = Package(
     name: "YourProject",
     platforms: [
-        .macOS(.v26)
+        .macOS(.v14)
     ],
     dependencies: [
         .package(
             url: "https://github.com/AgentiLoop/AgentD1F.git",
-            from: "1.0.12"
+            from: "1.0.15"
         )
     ],
     targets: [
@@ -107,7 +107,7 @@ swift build -c release
 
 | Platform | Minimum Version |
 |----------|----------------|
-| **macOS** | 26+ (Swift 6.2+) |
+| **macOS** | 14+ (Swift 6.4+) |
 
 Users are welcome to fork and port MultiLineDiff to Linux, Windows and Ubuntu!
 
@@ -185,3 +185,11 @@ let asciiDiff = MultiLineDiff.createAndDisplayDiff(
 
 print("ASCII Diff for AI:")
 print(asciiDiff)
+
+## Part of AgentiLoop Agent!
+
+AgentD1F is one of the open-source building blocks of **[AgentiLoop Agent!](https://github.com/AgentiLoop/Agent)**, the native AI agent for macOS 14.6+ on Apple Silicon and Intel. Agent! codes in Xcode, drives any Mac app, runs shell as you or as root, and works with 23 LLM providers plus on-device Apple Intelligence.
+
+🌐 [agentiloop.ai](https://agentiloop.ai/) · ⬇️ [Download Agent!](https://github.com/AgentiLoop/Agent/releases/latest) · 🍺 `brew install --cask agentiloop-agent` · 💻 CLIs: [Rust](https://github.com/AgentiLoop/AgentiLoopCLI) / [Go](https://github.com/AgentiLoop/AgentiLoopGo)
+
+**More Agent! packages:** [AgentAccess](https://github.com/AgentiLoop/AgentAccess) · [AgentAudit](https://github.com/AgentiLoop/AgentAudit) · [AgentColorSyntax](https://github.com/AgentiLoop/AgentColorSyntax) · [AgentEventBridges](https://github.com/AgentiLoop/AgentEventBridges) · [AgentLLM](https://github.com/AgentiLoop/AgentLLM) · [AgentMCP](https://github.com/AgentiLoop/AgentMCP) · [AgentSwift](https://github.com/AgentiLoop/AgentSwift) · [AgentTerminalNeo](https://github.com/AgentiLoop/AgentTerminalNeo) · [AgentTools](https://github.com/AgentiLoop/AgentTools) · [AgentScripts](https://github.com/AgentiLoop/AgentScripts)
